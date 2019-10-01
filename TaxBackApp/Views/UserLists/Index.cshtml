@@ -1,0 +1,30 @@
+﻿@model IEnumerable<TaxBackApp.Models.UserList>
+
+<p>
+    <h1 style="display:inline-block">Users</h1>
+    <a asp-action="Create"><img class="img-thumbnail" src="~/Images/add.png" style="width:64px" /></a>
+</p>
+<table class="table table-hover table-reflow">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.UserId"><img class="img-thumbnail" src="~/Images/Edit.png" style="width:32px" /></a>
+                    <a asp-action="Delete" asp-route-id="@item.UserId"><img class="img-thumbnail" src="~/Images/Delete.png" style="width:32px" /></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

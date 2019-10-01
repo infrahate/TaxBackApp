@@ -1,0 +1,78 @@
+﻿@model IEnumerable<TaxBackApp.Models.TaskEntry>
+
+
+
+<p>
+    <h1 style="display:inline-block">Dashboard</h1>
+    <a asp-action="Create"><img class="img-thumbnail" src="~/Images/add.png" style="width:64px" /></a>
+</p>
+<table class="table table-hover table-reflow">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskEntryDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDue)
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Assigned To
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateNextAction)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskEntryDescription)
+                </td>
+                <td>
+                    @item.DateDue.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskType.TaskTypeDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskStatus.TaskStatusDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserList.UserName)
+                </td>
+                <td>
+                    @item.DateNextAction.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TaskEntryId"><img class="img-thumbnail" src="~/Images/Edit.png" style="width:32px" /></a>
+                    <a asp-action="Delete" asp-route-id="@item.TaskEntryId"><img class="img-thumbnail" src="~/Images/Delete.png" style="width:32px" /></a>
+                </td>
+            </tr>
+            @foreach (var comment in item.TaskComments)
+            {
+                <tr>
+                    <td>
+                        <b>Comment</b> : @comment.TaskCommentDescription
+                    </td>
+                    <td>
+                        @comment.ReminderDate.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        <a asp-controller="TaskComments" asp-action="Edit" asp-route-id="@comment.TaskCommentId"><img class="img-thumbnail" src="~/Images/Edit.png" style="width:32px" /></a>
+                        <a asp-controller="TaskComments" asp-action="Delete" asp-route-id="@comment.TaskCommentId"><img class="img-thumbnail" src="~/Images/Delete.png" style="width:32px" /></a>
+                    </td>
+                </tr>
+
+            }
+        }
+    </tbody>
+</table>

@@ -48,7 +48,7 @@ namespace TaxBackApp.Data
                 {
                     context.Database.OpenConnection();
                     context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[TaskTypes] ON");
-                    context.Database.ExecuteSqlCommand("INSERT INTO [dbo].[TaskTypes](TaskCommentTypeId,TaskTypeDescription) VALUES (1,'Programming'),(2,'PM'),(3,'HR'),(4,'PR')");
+                    context.Database.ExecuteSqlCommand("INSERT INTO [dbo].[TaskCommentTypes](TaskCommentTypeId,TaskTypeDescription) VALUES (1,'Comment'),(2,'Action')");
                     context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[TaskTypes] OFF");
                     context.Database.CloseConnection();
                 }
